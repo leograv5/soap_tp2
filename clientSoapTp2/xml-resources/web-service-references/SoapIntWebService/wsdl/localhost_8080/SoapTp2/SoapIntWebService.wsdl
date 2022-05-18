@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.floriante.fr/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="SoapIntWebService" targetNamespace="http://www.floriante.fr/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.floriante.fr/" elementFormDefault="unqualified" targetNamespace="http://www.floriante.fr/" version="1.0">
+
+  <xs:element name="convertIntString" type="tns:convertIntString"/>
+
+  <xs:element name="convertIntStringResponse" type="tns:convertIntStringResponse"/>
+
+  <xs:element name="division" type="tns:division"/>
+
+  <xs:element name="divisionResponse" type="tns:divisionResponse"/>
+
+  <xs:complexType name="division">
+    <xs:sequence>
+      <xs:element name="dividende" type="xs:int"/>
+      <xs:element name="diviseur" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="divisionResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="convertIntString">
+    <xs:sequence>
+      <xs:element name="entier" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="convertIntStringResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="convertIntString">
+    <wsdl:part element="tns:convertIntString" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="convertIntStringResponse">
+    <wsdl:part element="tns:convertIntStringResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="divisionResponse">
+    <wsdl:part element="tns:divisionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="division">
+    <wsdl:part element="tns:division" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SoapIntWebService">
+    <wsdl:operation name="division">
+      <wsdl:input message="tns:division" name="division">
+    </wsdl:input>
+      <wsdl:output message="tns:divisionResponse" name="divisionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="convertIntString">
+      <wsdl:input message="tns:convertIntString" name="convertIntString">
+    </wsdl:input>
+      <wsdl:output message="tns:convertIntStringResponse" name="convertIntStringResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SoapIntWebServiceSoapBinding" type="tns:SoapIntWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="division">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="division">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="divisionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="convertIntString">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="convertIntString">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="convertIntStringResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SoapIntWebService">
+    <wsdl:port binding="tns:SoapIntWebServiceSoapBinding" name="SoapIntWebServicePort">
+      <soap:address location="http://localhost:8080/SoapTp2/SoapIntWebService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
